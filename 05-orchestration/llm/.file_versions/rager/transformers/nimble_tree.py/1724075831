@@ -1,0 +1,33 @@
+if 'transformer' not in globals():
+    from mage_ai.data_preparation.decorators import transformer
+
+def generate_document_id(doc):
+    """Generate a unique document ID based on course, question, and text."""
+    combined = f"{doc['course']}-{doc['question']}-{doc['text'][:10]}"
+    hash_object = hashlib.md5(combined.encode())
+    hash_hex = hash_object.hexdigest()
+    document_id = hash_hex[:8]
+    return document_id
+
+@transformer
+def transform_documents(data):
+    """Transform the input data into a list of documents with unique IDs."""
+    documents = []
+
+    # Check if the input is a list of dictionaries or a single dictionary
+    if isinstance(data, list):
+        for course_dict in data:
+            for doc in course_dict['documents']:
+                doc['course'] = course_dict['course']
+                doc['document_id'] = generate_document_id(doc)
+                documents.append(doc)
+    else:
+        for doc in data['documents']:
+            doc['course'] = data['course']
+            doc['document_id'] = generate_document_id(doc)
+            documents.append(doc)
+
+    # Output the number of documents (chunks) processed
+    print(len(documents))
+
+    return documents

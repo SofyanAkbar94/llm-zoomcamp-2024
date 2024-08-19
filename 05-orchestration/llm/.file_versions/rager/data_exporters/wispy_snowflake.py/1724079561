@@ -1,0 +1,36 @@
+
+if 'data_exporter' not in globals():
+    from mage_ai.data_preparation.decorators import data_exporter
+
+from datetime import datetime
+from mage_ai.data_preparation.variable_manager import set_global_variable
+
+# Get the index name prefix and add the current timestamp
+index_name_prefix = kwargs.get('index_name', 'documents')
+current_time = datetime.now().strftime("%Y%m%d_%H%M%S")
+index_name = f"{index_name_prefix}_{current_time}"
+print("Index name:", index_name)
+
+# Save the index name as a global variable
+set_global_variable('homework', 'index_name', index_name)
+
+index_settings = {
+    "settings": {
+        "number_of_shards": 1,
+        "number_of_replicas": 1
+    },
+    "mappings": {
+        "properties": {
+            "text": {"type": "text"},
+            "section": {"type": "text"},
+            "question": {"type": "text"},
+            "course": {"type": "keyword"},
+            "document_id": {"type": "keyword"}
+        }
+    }
+}
+
+if isinstance(document[vector_column_name], np.ndarray):
+    document[vector_column_name] = document[vector_column_name].tolist()
+
+print("Last document indexed:", document)

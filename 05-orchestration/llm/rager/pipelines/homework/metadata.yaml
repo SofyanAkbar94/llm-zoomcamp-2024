@@ -1,0 +1,108 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: rager/data_loaders/transcendent_relic.py
+    templates:
+      github:
+        variables:
+          branch: master
+          file_extension: .py
+          path: null
+          repo_url: null
+  downstream_blocks:
+  - nimble_tree
+  executor_config: null
+  executor_type: local_python
+  groups:
+  - ingest
+  has_callback: false
+  language: python
+  name: Transcendent relic
+  retry_config: null
+  status: updated
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: transcendent_relic
+- all_upstream_blocks_executed: false
+  color: null
+  configuration:
+    file_source:
+      path: rager/transformers/nimble_tree.py
+  downstream_blocks:
+  - starry_glitter
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: nimble tree
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - transcendent_relic
+  uuid: nimble_tree
+- all_upstream_blocks_executed: false
+  color: null
+  configuration:
+    file_source:
+      path: rager/data_exporters/starry_glitter.py
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: starry glitter
+  retry_config: null
+  status: failed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - nimble_tree
+  uuid: starry_glitter
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: rager/data_loaders/knightly_silversmith.py
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: knightly silversmith
+  retry_config: null
+  status: updated
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: knightly_silversmith
+cache_block_output_in_memory: false
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2024-08-19 13:15:49.058284+00:00'
+data_integration: null
+description: null
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: homework
+notification_config: {}
+remote_variables_dir: null
+retry_config: {}
+run_pipeline_in_one_process: false
+settings:
+  triggers: null
+spark_config: {}
+tags: []
+type: python
+uuid: homework
+variables:
+  index_name: documents_20240819_1046_20240819_1103_20240819_1251_20240819_1522_20240819_1554_20240819_1646_20240819_1652_20240819_2413_20240819_2423_20240819_2436_20240819_2747_20240819_2948_20240819_3202_20240819_3212_20240819_3256_20240819_3450_20240819_3536_20240819_3629_20240819_144134_20240819_4226_20240819_4253_20240819_4307_20240819_5422_20240819_5441_20240819_5528_20240819_0419_20240819_0520_20240819_0739_20240819_1425_20240819_1611_20240819_1753_20240819_2754_20240819_2808_20240819_2813_20240819_2854_20240819_3000_20240819_4347_20240819_4410_20240819_154641_20240819_154704_20240819_154824_20240819_155006_20240819_155017_20240819_155610_20240819_155703_20240819_160258_20240819_161545_20240819_161626_20240819_161646_20240819_2233_20240819_2350_20240819_2952
+variables_dir: /home/src/mage_data/rager
+widgets: []
